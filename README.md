@@ -15,7 +15,7 @@ The structure is built using **HTML** and styled with **CSS**, as referenced in 
 - Grid
 - Figma
 - Git & GitHub
-- BEM file structure
+- Flat BEM file structure
 
 ### Overview
 
