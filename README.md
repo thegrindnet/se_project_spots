@@ -39,13 +39,13 @@ The video link will be available soon!
 
 **GitHub**
 
-[Link to the project on GitHub](https://thegrindnet.github.io/se_project_spots/)
+- [Link to the project on GitHub](https://thegrindnet.github.io/se_project_spots/)
 
 **Images**
 
-![Project at screensize 1440px (3 Column)](<Screensize at 1440px.png>)
-![Project at screensize 1200px (2 Column)](<Screensize at 1200px.png>)
-![Project at screensize 370px (1 Column)](<Screensize at 370px.png>)
+- ![Project at screensize 1440px (3 Column)](<Screensize at 1440px.png>)
+- ![Project at screensize 1200px (2 Column)](<Screensize at 1200px.png>)
+- ![Project at screensize 370px (1 Column)](<Screensize at 370px.png>)
 
 #### Plan on improving the project
 
