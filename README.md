@@ -31,7 +31,11 @@ BEM naming structure is used for naming the classes for all blocks and their res
 
 CSS is used for styling the **Spots** app. Each block has its own CSS stylesheet. All the fonts and images used in the app have been imported and included in the respective file directory. Each CSS stylesheet is linked to index.css stylesheet, in turn which is the only stylesheet linked to index.html file.
 
-BEM is the methodology used to organize and structure all the directories and files.
+CSS Grid is used to format the layout of the cards. The property and value: `grid-template-columns: repeat(auto-fit, 413px);` is a perfect solution to make the grid responsive and to avoid making additional media queries. This values allows the grid to be responsive all the way from a 3 column layout to a 1 column layout, looking from a desktop from a resolution of 1440px all the way down to a screen width of 628px. Although the 1 column looks good, a media query is necessary to change the size of the card so it doesnt cut off.
+
+The property and value used at a max-width of 627px is: `grid-template-columns: repeat(auto-fit, 288px);`. This is to ensure that the cards look great at a 1 column format for screens as small as 320px wide.
+
+The Flat BEM methodology is used to organize and structure all the directories and files.
 
 **Video Description**
 
