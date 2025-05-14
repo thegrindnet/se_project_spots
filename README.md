@@ -39,7 +39,7 @@ The Flat BEM methodology is used to organize and structure all the directories a
 
 **Video Description**
 
-The video link will be available soon!
+- [Link to Video ] (https://docs.google.com/videos/d/17_MKI_7cPPxmvsQ_ISLA5LDckUaUV5ZMbmAzotlh8h4/edit?usp=sharing)
 
 **GitHub**
 
