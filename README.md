@@ -47,9 +47,9 @@ The Flat BEM methodology is used to organize and structure all the directories a
 
 **Images**
 
-- ![Project at screensize 1440px (3 Column)](<./images/Screensize at 1440px.png>)
-- ![Project at screensize 1200px (2 Column)](<./images/Screensize at 1200px.png>)
-- ![Project at screensize 370px (1 Column)](<./images/Screensize at 370px.png>)
+- ![Project at screensize 1440px (3 Column)](./images/Screensize%20at%201440px.png)
+- ![Project at screensize 1200px (2 Column)](./images/Screensize%20at%201200px.png)
+- ![Project at screensize 370px (1 Column)](./images/Screensize%20at%20370px.png)
 
 #### Plan on improving the project
 
