@@ -12,35 +12,33 @@ const editProfileNameInput = profileFormElement.querySelector(
 const editProfileDescriptionInput = profileFormElement.querySelector(
   "#profile-description-input"
 );
-/////////
+
 const newPostAddButton = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseButton = newPostModal.querySelector(".modal__close-btn");
 
-/////////
 const addCardFormElement = newPostModal.querySelector(".modal__form");
 const cardImageInput = addCardFormElement.querySelector("#card-image-input");
 const cardCaptionInput = addCardFormElement.querySelector(
   "#card-caption-input"
 );
-/////////
 
 editProfileButton.addEventListener("click", function () {
   editProfileNameInput.value = profileNameElement.textContent;
   editProfileDescriptionInput.value = profileDescriptionElement.textContent;
-  editProfileModal.classList.add("modal_is-opened");
+  openModal(editProfileModal);
 });
 
 editCloseButton.addEventListener("click", function () {
-  editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 });
 
 newPostAddButton.addEventListener("click", function () {
-  newPostModal.classList.add("modal_is-opened");
+  openModal(newPostModal);
 });
 
 newPostCloseButton.addEventListener("click", function () {
-  newPostModal.classList.remove("modal_is-opened");
+  closeModal(newPostModal);
 });
 
 function handleProfileFormSubmit(evt) {
@@ -49,14 +47,23 @@ function handleProfileFormSubmit(evt) {
   profileNameElement.textContent = editProfileNameInput.value;
   profileDescriptionElement.textContent = editProfileDescriptionInput.value;
 
-  editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 }
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   console.log(cardImageInput.value);
   console.log(cardCaptionInput.value);
-  newPostModal.classList.remove("modal_is-opened");
+  closeModal(newPostModal);
+  addCardFormElement.reset();
+}
+
+function openModal(modal) {
+  modal.classList.add("modal_is-opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_is-opened");
 }
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);

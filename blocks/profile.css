@@ -63,13 +63,6 @@
   cursor: pointer;
 }
 
-.profile__edit-button::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  background-image: url(../images/pencil.svg);
-}
-
 .profile__edit-btn:hover {
   opacity: 100%;
 }

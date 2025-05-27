@@ -16,6 +16,7 @@ The structure is built using **HTML** and styled with **CSS**, as referenced in 
 - Figma
 - Git & GitHub
 - Flat BEM file structure
+- Javascript
 
 ### Overview
 
@@ -37,6 +38,10 @@ The property and value used at a max-width of 627px is: `grid-template-columns: 
 
 The Flat BEM methodology is used to organize and structure all the directories and files.
 
+#### App interactive funcionality
+
+Javascript is added to implement interactive functionality for editing the user profile.
+
 **Video Description**
 
 - [Link to Video ](https://docs.google.com/videos/d/17_MKI_7cPPxmvsQ_ISLA5LDckUaUV5ZMbmAzotlh8h4/edit?usp=sharing)
@@ -53,4 +58,4 @@ The Flat BEM methodology is used to organize and structure all the directories a
 
 #### Plan on improving the project
 
-Although this file doesn’t show interactive functionality, the design suggests potential for further JavaScript-based interactivity (e.g., editing profiles, liking photos, adding posts).
+Although this file has some interactive functionality, the design suggests potential for further JavaScript-based interactivity (e.g., liking photos, adding posts).
