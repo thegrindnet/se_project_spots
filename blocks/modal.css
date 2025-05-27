@@ -105,6 +105,10 @@
   cursor: pointer;
 }
 
+.modal__submit-btn:hover {
+  opacity: 0.7;
+}
+
 @media screen and (max-width: 869px) {
   .modal {
     padding: 12px;
