@@ -1,38 +1,8 @@
-const initialCards = [
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
-
 const editProfileButton = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editCloseButton = editProfileModal.querySelector(".modal__close-btn");
-const profileFormElement = editProfileModal.querySelector(".modal__form");
+
+// const profileFormElement = editProfileModal.querySelector(".modal__form");
+const profileFormElement = document.forms["edit-profile-form"];
 const profileNameElement = document.querySelector(".profile__name");
 const profileDescriptionElement = document.querySelector(
   ".profile__description"
@@ -46,9 +16,8 @@ const editProfileDescriptionInput = profileFormElement.querySelector(
 
 const newPostAddButton = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseButton = newPostModal.querySelector(".modal__close-btn");
 
-const addCardFormElement = newPostModal.querySelector(".modal__form");
+const addCardFormElement = document.forms["new-post-form"];
 const cardImageInput = addCardFormElement.querySelector("#card-image-input");
 const cardCaptionInput = addCardFormElement.querySelector(
   "#card-caption-input"
@@ -67,8 +36,17 @@ const previewCloseBtn = previewModal.querySelector(
 const previewImage = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
 
+const closeButtons = document.querySelectorAll(".modal__close-btn");
+
+closeButtons.forEach((button) => {
+  const modal = button.closest(".modal");
+  button.addEventListener("click", function () {
+    closeModal(modal);
+  });
+});
+
 function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
+  let cardElement = cardTemplate.cloneNode(true);
 
   const cardTitleEl = cardElement.querySelector(".card__title");
   cardTitleEl.textContent = data.name;
@@ -107,16 +85,8 @@ editProfileButton.addEventListener("click", function () {
   openModal(editProfileModal);
 });
 
-editCloseButton.addEventListener("click", function () {
-  closeModal(editProfileModal);
-});
-
 newPostAddButton.addEventListener("click", function () {
   openModal(newPostModal);
-});
-
-newPostCloseButton.addEventListener("click", function () {
-  closeModal(newPostModal);
 });
 
 function handleProfileFormSubmit(evt) {
@@ -139,8 +109,6 @@ function handleAddCardSubmit(evt) {
 
   cardsList.prepend(cardElement);
 
-  console.log(cardCaptionInput.value);
-  console.log(cardImageInput.value);
   closeModal(newPostModal);
   addCardFormElement.reset();
 }
@@ -158,5 +126,13 @@ addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
+
+  function renderCard(item, method = "append") {
+    // const cardElement = getCardElement(item);
+    cardsList.append(item);
+  }
+
+  renderCard(cardElement);
+
+  // cardsList.append(cardElement);
 });
