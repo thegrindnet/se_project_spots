@@ -40,7 +40,7 @@ The Flat BEM methodology is used to organize and structure all the directories a
 
 #### App interactive funcionality
 
-Javascript is added to implement interactive functionality for editing the user profile, adding a new post, deleting a post, liking a post and previewing image cards.
+Javascript is added to implement interactive functionality for editing the user profile, adding a new post, deleting a post, liking a post, previewing image cards, form validation and UX Improvements.
 
 **Video Description**
 
