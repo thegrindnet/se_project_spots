@@ -1,5 +1,3 @@
-const modalSelection = document.querySelectorAll(".modal");
-
 const editProfileButton = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 
@@ -23,8 +21,6 @@ const cardImageInput = addCardFormElement.querySelector("#card-image-input");
 const cardCaptionInput = addCardFormElement.querySelector(
   "#card-caption-input"
 );
-
-const cardSubmitBtn = document.querySelectorAll(".modal__submit-btn");
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -85,10 +81,11 @@ previewCloseBtn.addEventListener("click", function () {
 editProfileButton.addEventListener("click", function () {
   editProfileNameInput.value = profileNameElement.textContent;
   editProfileDescriptionInput.value = profileDescriptionElement.textContent;
-  resetValidation(profileFormElement, [
-    editProfileNameInput,
-    editProfileDescriptionInput,
-  ]);
+  resetValidation(
+    profileFormElement,
+    [editProfileNameInput, editProfileDescriptionInput],
+    settings
+  );
   openModal(editProfileModal);
 });
 
@@ -107,6 +104,7 @@ function handleProfileFormSubmit(evt) {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
+  const newPostSaveBtn = newPostModal.querySelector(".modal__submit-btn");
 
   const inputValues = {
     name: cardCaptionInput.value,
@@ -114,33 +112,37 @@ function handleAddCardSubmit(evt) {
   };
   const cardElement = getCardElement(inputValues);
 
-  cardsList.prepend(cardElement);
+  renderCard(inputValues, "prepend");
+
   addCardFormElement.reset();
-  disabledButton(cardSubmitBtn[1], settings);
+  disabledButton(newPostSaveBtn, settings);
   closeModal(newPostModal);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
   modal.addEventListener("click", closeModalOnOverlay);
+  document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  modal.removeEventListener("click", closeModalOnOverlay);
+  document.removeEventListener("keydown", handleEscape);
 }
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-
-  function renderCard(item, method = "append") {
-    cardsList.append(item);
-  }
-
-  renderCard(cardElement);
+  renderCard(item);
+  console.log(item);
 });
+
+function renderCard(item, method = "append") {
+  const cardElement = getCardElement(item);
+  cardsList[method](cardElement);
+}
 
 function closeModalOnOverlay(evt) {
   if (!evt.target.classList.contains(".modal")) {
@@ -148,11 +150,9 @@ function closeModalOnOverlay(evt) {
   }
 }
 
-window.addEventListener("keydown", function (evt) {
+function handleEscape(evt) {
   if (evt.key === "Escape") {
-    const activeModal = this.document.querySelector(".modal_is-opened");
-    if (activeModal) {
-      closeModal(activeModal);
-    }
+    const openedPopup = document.querySelector(".modal_is-opened");
+    closeModal(openedPopup);
   }
-});
+}
