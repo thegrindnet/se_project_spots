@@ -1,3 +1,13 @@
+import "../pages/index.css";
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+  disabledButton,
+} from "../scripts/validate.js";
+
+import { initialCards } from "../scripts/cards.js";
+
 const editProfileButton = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 
@@ -136,7 +146,6 @@ addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach(function (item) {
   renderCard(item);
-  console.log(item);
 });
 
 function renderCard(item, method = "append") {
@@ -156,3 +165,5 @@ function handleEscape(evt) {
     closeModal(openedPopup);
   }
 }
+
+enableValidation(settings);
