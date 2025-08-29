@@ -5,8 +5,6 @@ import {
   resetValidation,
   disabledButton,
 } from "../scripts/validate.js";
-
-// import { initialCards } from "../scripts/cards.js";
 import Api from "../utils/Api.js";
 
 // Profile elements
@@ -96,24 +94,6 @@ api
   })
   .catch(console.error);
 
-// WORK ON THIS
-// api
-//   .getInitialCards()
-//   .then((cards) => {
-//     cards.forEach((item) => {
-//       const cardElement = getCardElement(item);
-//       cardsList.append(cardElement);
-//     });
-//   })
-//   .catch(console.error);
-
-// closeButtons.forEach((button) => {
-//   const modal = button.closest(".modal");
-//   button.addEventListener("click", function () {
-//     closeModal(modal);
-//   });
-// });
-
 function getCardElement(data) {
   if (!Array.isArray(data.likes)) {
     data.likes = [];
@@ -128,9 +108,6 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
 
   const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
-  // cardLikeBtnEl.addEventListener("click", function () {
-  //   cardLikeBtnEl.classList.toggle("card__like-btn_active");
-  // });
 
   if (data.isLiked) {
     cardLikeBtnEl.classList.add("card__like-btn_active");
@@ -212,13 +189,11 @@ function handleProfileFormSubmit(evt) {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  // const newPostSaveBtn = newPostModal.querySelector(".modal__submit-btn");
   newPostSaveBtn.textContent = "Saving...";
   const inputValues = {
     name: cardCaptionInput.value,
     link: cardImageInput.value,
   };
-  // const cardElement = getCardElement(inputValues);
 
   api
     .addNewCard(inputValues)
@@ -228,22 +203,11 @@ function handleAddCardSubmit(evt) {
       addCardFormElement.reset();
       disabledButton(newPostSaveBtn, settings);
       closeModal(newPostModal);
-      // const cardElement = getCardElement(newCardData);
-      // cardsList.prepend(cardElement);
-      // closeModal(newPostModal);
-      // evt.target.reset();
-      // disabledButton(newPostSaveBtn, settings);
     })
     .catch(console.error)
     .finally(() => {
       newPostSaveBtn.textContent = "Create";
     });
-
-  // renderCard(inputValues, "prepend");
-
-  // addCardFormElement.reset();
-  // disabledButton(newPostSaveBtn, settings);
-  // closeModal(newPostModal);
 }
 
 function handleAvatarSubmit(evt) {
