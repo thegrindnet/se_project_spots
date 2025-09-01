@@ -3,7 +3,7 @@ class Api {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
-  // THIS IS DONE
+
   getAppInfo() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]).then(
       ([user, cards]) => {
@@ -12,17 +12,44 @@ class Api {
     );
   }
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+  _request(endpoint, options = {}) {
+    const finalOptions = {
       headers: this._headers,
-    }).then(this._handleServerResponse);
+      options: this.options,
+    };
+    const url = `${this._baseUrl}${endpoint}`;
+    return fetch(url, finalOptions).then(this._handleServerResponse);
+  }
+
+  getInitialCards() {
+    return this._request("/cards");
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
-    }).then(this._handleServerResponse);
+    return this._request("/users/me");
   }
+
+  // getInitialCards() {
+  //   return fetch(`${this._baseUrl}/cards`, {
+  //     headers: this._headers,
+  //   }).then(this._handleServerResponse);
+  // }
+
+  // getUserInfo() {
+  //   return fetch(`${this._baseUrl}/users/me`, {
+  //     headers: this._headers,
+  //   }).then(this._handleServerResponse);
+  // }
+
+  // editUserInfo({ name, about }) {
+  //   return this._request("/users/me", {
+  //     method: "PATCH",
+  //     body: JSON.stringify({
+  //       name,
+  //       about,
+  //     }),
+  //   });
+  // }
 
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -71,7 +98,7 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-    Promise.reject(`Error: ${res.status}`);
+    // Promise.reject(`Error: ${res.status}`);
   }
 }
 export default Api;

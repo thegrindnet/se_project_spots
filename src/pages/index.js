@@ -203,8 +203,8 @@ function handleAddCardSubmit(evt) {
 
   api
     .addNewCard(inputValues)
-    .then(() => {
-      renderCard(inputValues, "prepend");
+    .then((newCardData) => {
+      renderCard(newCardData, "prepend");
       addCardFormElement.reset();
       disabledButton(newPostSaveBtn, settings);
       closeModal(newPostModal);
