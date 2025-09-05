@@ -15,7 +15,7 @@ class Api {
   _request(endpoint, options = {}) {
     const finalOptions = {
       headers: this._headers,
-      options: this.options,
+      ...options,
     };
     const url = `${this._baseUrl}${endpoint}`;
     return fetch(url, finalOptions).then(this._handleServerResponse);
@@ -29,76 +29,48 @@ class Api {
     return this._request("/users/me");
   }
 
-  // getInitialCards() {
-  //   return fetch(`${this._baseUrl}/cards`, {
-  //     headers: this._headers,
-  //   }).then(this._handleServerResponse);
-  // }
-
-  // getUserInfo() {
-  //   return fetch(`${this._baseUrl}/users/me`, {
-  //     headers: this._headers,
-  //   }).then(this._handleServerResponse);
-  // }
-
-  // editUserInfo({ name, about }) {
-  //   return this._request("/users/me", {
-  //     method: "PATCH",
-  //     body: JSON.stringify({
-  //       name,
-  //       about,
-  //     }),
-  //   });
-  // }
-
   editUserInfo({ name, about }) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request("/users/me", {
       method: "PATCH",
-      headers: this._headers,
       body: JSON.stringify({
         name,
         about,
       }),
-    }).then(this._handleServerResponse);
+    });
   }
 
   editAvatarInfo(avatar) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return this._request("/users/me/avatar", {
       method: "PATCH",
-      headers: this._headers,
       body: JSON.stringify({
         avatar,
       }),
-    }).then(this._handleServerResponse);
+    });
   }
 
   addNewCard({ name, link }) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request("/cards", {
       method: "POST",
-      headers: this._headers,
       body: JSON.stringify({ name, link }),
-    }).then(this._handleServerResponse);
+    });
   }
 
   deleteCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id}`, {
+    return this._request(`/cards/${id}`, {
       method: "DELETE",
-      headers: this._headers,
-    }).then(this._handleServerResponse);
+    });
   }
 
   cardLikeStatus(id, isLiked) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+    return this._request(`/cards/${id}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
-      headers: this._headers,
-    }).then(this._handleServerResponse);
+    });
   }
 
   _handleServerResponse(res) {
     if (res.ok) {
       return res.json();
     }
-    // Promise.reject(`Error: ${res.status}`);
   }
 }
 export default Api;
