@@ -17,6 +17,8 @@ The structure is built using **HTML** and styled with **CSS**, as referenced in 
 - Git & GitHub
 - Flat BEM file structure
 - Javascript
+- Asynchronous JS
+- API's
 
 ### Overview
 
@@ -38,9 +40,22 @@ The property and value used at a max-width of 627px is: `grid-template-columns: 
 
 The Flat BEM methodology is used to organize and structure all the directories and files.
 
-#### App interactive funcionality
+#### App interactive functionality
 
-Javascript is added to implement interactive functionality for editing the user profile, adding a new post, deleting a post, liking a post, previewing image cards, form validation and UX Improvements.
+The app uses asynchronous JavaScript to handle all user interactions and persists data via a REST API. Actions like editing the profile, changing the avatar, adding/deleting cards, liking/unliking, and opening image previews happen without page reloads. Loading states, optimistic updates, and graceful error handling are included to keep the UI responsive.
+
+#### How it works (at a glance)
+
+- On load, the app requests the current user and initial cards in parallel.
+- Forms submit via fetch. Buttons show a saving/loading state.
+- Mutations (add card, like, delete) optimistically update the UI and roll back on failure.
+- All network calls are centralized in a small api.js module.
+- Image previews open in a modal with focus trapping and Esc to close.
+- Client-side validation prevents invalid URLs and empty fields; server errors are mapped to friendly messages.
+
+#### API base & auth
+
+Set the base URL and auth token once and reuse for all requests.
 
 **Video Description**
 
@@ -58,4 +73,4 @@ Javascript is added to implement interactive functionality for editing the user 
 
 #### Plan on improving the project
 
-Although this file has some interactive functionality, the design suggests potential for further JavaScript-based interactivity (e.g., liking photos, adding posts).
+Although the API may be limited, adding user authentication would improve the project by allowing each user to securely manage their own posts and likes. Implementing additional API-driven features such as post comments and customizable user settings could also enhance functionality. Finally, including light and dark mode themes would create a more versatile user experience across different environments.
